@@ -8,11 +8,12 @@ if ( allToDos )
     .then( response => response.data )
     // "Process" our data (JSON object or array.)
     .then( data => {
-      console.log( data );
-      // Output list of todos.
-      // data.forEach( toDo => {
-
-      // } );
+      // console.log( data );
+      data.forEach( toDo => { // Output list of todos.
+        const toDoLI = document.createElement( 'LI' );
+        toDoLI.textContent = toDo.task;
+        allToDos.appendChild( toDoLI );
+      } );
     } );
 }
 
