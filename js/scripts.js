@@ -2,8 +2,10 @@
 const allToDos = document.getElementById( 'index' );
 // If available, proceed.
 if ( allToDos )
-{
+{ // Repeatable function for showing all of our to-dos.
   const outputToDos = () => {
+    // Clear any existing items.
+    allToDos.innerHTML = '';
     // Run Axios to obtain list.
     axios.get( 'https://localhost:44390/api/ToDoItems/' )
     // Get just the data from the response.
@@ -25,6 +27,8 @@ if ( allToDos )
       } );
     } );
   }
+  // On pageload, output the todos!
+  outputToDos();
 }
 
 // Grab the "create" ToDo form.
