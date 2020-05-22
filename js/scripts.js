@@ -2,8 +2,10 @@
 const allToDos = document.getElementById( 'index' );
 // If available, proceed.
 if ( allToDos )
-{ // Run Axios to obtain list.
-  axios.get( 'https://localhost:44390/api/ToDoItems/' )
+{
+  const outputToDos = () => {
+    // Run Axios to obtain list.
+    axios.get( 'https://localhost:44390/api/ToDoItems/' )
     // Get just the data from the response.
     .then( response => response.data )
     // "Process" our data (JSON object or array.)
@@ -11,10 +13,18 @@ if ( allToDos )
       // console.log( data );
       data.forEach( toDo => { // Output list of todos.
         const toDoLI = document.createElement( 'LI' );
-        toDoLI.textContent = toDo.task;
+        toDoLI.textContent = ' ' + toDo.task;
+        const toDoCheckbox = document.createElement( 'INPUT' );
+        toDoCheckbox.type = 'checkbox';
+        toDoCheckbox.addEventListener( 'click', event => {
+          axios.delete( 'https://localhost:44390/api/ToDoItems/' + toDo.id )
+            .then( response => { outputToDos(); } );
+        } );
+        toDoLI.prepend( toDoCheckbox );
         allToDos.appendChild( toDoLI );
       } );
     } );
+  }
 }
 
 // Grab the "create" ToDo form.
