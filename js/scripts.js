@@ -15,3 +15,6 @@ if ( allToDos )
       // } );
     } );
 }
+
+// Grab the "create" ToDo form.
+const createToDo = document.getElementById( 'create' );
