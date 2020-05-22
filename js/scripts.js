@@ -25,11 +25,7 @@ if ( createToDo )
     event.preventDefault(); // Stop form from real submit.
     // Retrieve form field values.
     const newTask = document.getElementById( 'task' ).value;
-    const newCompletedRaw = document.getElementById( 'completed' ).checked;
-    // Enforce boolean for completed.
-    let newCompleted = false;
-    if ( newCompletedRaw )
-      newCompleted = true;
+    const newCompleted = document.getElementById( 'completed' ).checked;
     // Create the new todo.
     axios.post( 'https://localhost:44390/api/ToDoItems/', {
       Task: newTask,
