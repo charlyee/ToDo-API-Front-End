@@ -23,8 +23,14 @@ if ( createToDo )
 { // Listen for submission.
   createToDo.addEventListener( 'submit', event => {
     event.preventDefault(); // Stop form from real submit.
+    // Retrieve form field values.
+    const newTask = document.getElementById( 'task' ).value;
+    const newCompleted = document.getElementById( 'completed' ).value;
     // Create the new todo.
-    axios.post( 'https://localhost:44390/api/ToDoItems/' )
+    axios.post( 'https://localhost:44390/api/ToDoItems/', {
+      Task: newTask,
+      Completed: newCompleted
+    } )
       .then( response => { // On success, redirect to full list.
         document.location.href = './index.html';
       } );
