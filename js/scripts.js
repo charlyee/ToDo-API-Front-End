@@ -25,7 +25,11 @@ if ( createToDo )
     event.preventDefault(); // Stop form from real submit.
     // Retrieve form field values.
     const newTask = document.getElementById( 'task' ).value;
-    const newCompleted = document.getElementById( 'completed' ).value;
+    const newCompletedRaw = document.getElementById( 'completed' ).checked;
+    // Enforce boolean for completed.
+    let newCompleted = false;
+    if ( newCompletedRaw )
+      newCompleted = true;
     // Create the new todo.
     axios.post( 'https://localhost:44390/api/ToDoItems/', {
       Task: newTask,
@@ -33,6 +37,9 @@ if ( createToDo )
     } )
       .then( response => { // On success, redirect to full list.
         document.location.href = './index.html';
+      } )
+      .catch( error => {
+        console.log( error );
       } );
   } );
 }
