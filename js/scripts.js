@@ -18,14 +18,15 @@ if ( allToDos )
 
 // Grab the "create" ToDo form.
 const createToDo = document.getElementById( 'create' );
+// If there is a "create" ToDo form, proceed...
 if ( createToDo )
-{
+{ // Listen for submission.
   createToDo.addEventListener( 'submit', event => {
     event.preventDefault(); // Stop form from real submit.
     // Create the new todo.
-    axios.post( "https://localhost:44390/api/ToDoItems/" )
+    axios.post( 'https://localhost:44390/api/ToDoItems/' )
       .then( response => { // On success, redirect to full list.
-        document.location = './index.html'
+        document.location.href = './index.html';
       } );
   } );
 }
